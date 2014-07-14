@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="description" content="Memory Match Tiles is a simple memory match game in the spirit of the Windows 8 user interface. With three levels of difficulty, see how fast you can match tiles, numbers, or letters and how long of a streak you can get!">
+
+        <title>Memory Match Tiles</title>
+
+        <link href="css/memory-match-tiles.css" type="text/css" rel="stylesheet">
+
+        <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+        <script src="js/memory-match-tiles.js"></script>
+        <script>
+            var MK = {
+                enterPage: function () {},
+                exitPage: function () {},
+                sessionEvent: function () {}
+            };
+            var Windows = {
+                Foundation: {
+                    Collections: {
+                        PropertySet: function () {
+                            return [];
+                        }
+                    }
+                }
+            };
+            $(function () {
+                memoryMatchTiles.init();
+            });
+        </script>
+    </head>
+
+    <body>
+        <div id="memory-match">
+            <header>
+                <img src="images/logo.png" />
+                Memory Match Tiles
+                <a id="memory-match-goHome" onclick="memoryMatchTiles.exit()">Go Home</a>
+            </header>
+            <section id="memory-match-menu">
+                <nav id="memory-match-main">
+                    <button onclick="memoryMatchTiles.goTo('difficulties')">Difficulty: <span></span></button>
+                    <button onclick="memoryMatchTiles.goTo('types')">Tile Type: <span></span></button>
+                    <button onclick="memoryMatchTiles.start()">Play Now!</button>
+                </nav>
+
+                <nav id="memory-match-difficulties"></nav>
+                <nav id="memory-match-types"></nav>
+            </section>
+
+            <section id="memory-match-game">
+                <div id="memory-match-progress">
+                    <div class="score">Score: <span>0</span></div>
+                    <div class="timer">Time: <span>0:00.000</span></div>
+                    <div class="attempts">Attempts: <span>0</span></div>
+                    <div class="streak">Streak: <span>0</span></div>
+                </div>
+
+                <div id="memory-match-results">
+                    <div>Puzzle Completed</div>
+                    <div class="finalScore">Total Score: <span></span></div>
+                    <div class="score">Streak Score: <span></span></div>
+                    <div class="bonus">Bonus: <span></span></div>
+                    <div class="attempts">Attempts: <span></span></div>
+                    <div class="misses">Misses: <span></span></div>
+                    <div class="streak">Best Streak: <span></span></div>
+                    <div class="duration">Duration: <span></span></div>
+
+                    <button onclick="memoryMatchTiles.replay()">Replay</button>
+                    <button onclick="memoryMatchTiles.load()">New Game</button>
+                    <button onclick="memoryMatchTiles.goHome()">Go Home</button>
+                </div>
+
+                <div data-win-control="WinJS.UI.ViewBox">
+                    <div id="memory-match-board"></div>
+                </div>
+            </section>
+        </div>
+
+    </body>
+</html>
